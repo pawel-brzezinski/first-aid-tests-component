@@ -12,13 +12,13 @@
     "require": {
         "php": "^7.4|^8.0",
         "beberlei/assert": "^3.3",
-        "phpunit/phpunit": "^9.5"
+        "fakerphp/faker": "^1.16"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.16",
+        "phpmetrics/phpmetrics": "^2.7",
         "phpspec/prophecy-phpunit": "^2.0",
         "phpstan/phpstan": "^0.12.98",
-        "phpmetrics/phpmetrics": "^2.7"
+        "phpunit/phpunit": "^9.5"
     },
     "suggest": {},
     "autoload": {
