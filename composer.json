@@ -1,0 +1,35 @@
+{
+    "name": "pawel-brzezinski/first-aid-tests-component",
+    "description": "Provides helpful classes, traits and objects for tests purposes.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Paweł Brzeziński",
+            "email": "pawel.brzezinski@smartint.pl"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "beberlei/assert": "^3.3",
+        "phpunit/phpunit": "^9.5"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.16",
+        "phpspec/prophecy-phpunit": "^2.0",
+        "phpstan/phpstan": "^0.12.98",
+        "phpmetrics/phpmetrics": "^2.7"
+    },
+    "suggest": {},
+    "autoload": {
+        "psr-4": {
+            "PB\\Component\\FirstAidTests\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PB\\Component\\FirstAidTests\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable"
+}
