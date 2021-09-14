@@ -37,7 +37,7 @@ abstract class SimpleValueObjectMother
      *
      * @return array
      */
-    private static function randomConstructorArguments(array $overrides): array
+    protected static function randomConstructorArguments(array $overrides): array
     {
         return array_merge(static::getDefaultConstructorArguments(), $overrides);
     }
