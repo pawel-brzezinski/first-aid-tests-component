@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace PB\Component\FirstAidTests\Tests\MotherObject\Fake;
 
-use PB\Component\FirstAidTests\MotherObject\SimpleValueObjectMother;
-
 /**
  * @author Paweł Brzeziński <pawel.brzezinski@smartint.pl>
  */
-final class FakeValueObject extends SimpleValueObjectMother
+final class FakeValueObject
 {
     public int $id;
 
