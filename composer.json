@@ -13,7 +13,8 @@
         "php": "^7.4|^8.0",
         "adbario/php-dot-notation": "^2.2",
         "beberlei/assert": "^3.3",
-        "fakerphp/faker": "^1.16"
+        "fakerphp/faker": "^1.16",
+        "pawel-brzezinski/first-aid-component": "dev-main"
     },
     "require-dev": {
         "phpmetrics/phpmetrics": "^2.7",
