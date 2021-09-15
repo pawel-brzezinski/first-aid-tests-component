@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace PB\Component\FirstAidTests\Tests\MotherObject\Fake;
 
-use PB\Component\FirstAidTests\MotherObject\NotPublicConstructorValueObjectMother;
+use PB\Component\FirstAidTests\MotherObject\ReflectionPropertyValueObjectMother;
 
 /**
  * @author Paweł Brzeziński <pawel.brzezinski@smartint.pl>
  */
-final class FakeNotPublicConstructorValueObjectMother extends NotPublicConstructorValueObjectMother
+final class FakeReflectionPropertyValueObjectMother extends ReflectionPropertyValueObjectMother
 {
     /**
      * @return string
      */
     protected static function getClass(): string
     {
-        return FakeNotPublicConstructorValueObject::class;
+        return FakeReflectionPropertyValueObject::class;
     }
 
     /**
@@ -25,8 +25,8 @@ final class FakeNotPublicConstructorValueObjectMother extends NotPublicConstruct
     protected static function getDefaultConstructorArguments(): array
     {
         return [
-            'id' => 2,
-            'text' => 'Maecenas ut nunc ultrices',
+            'id' => 4,
+            'text' => 'Phasellus rutrum a ipsum id dignissim',
         ];
     }
 }

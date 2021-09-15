@@ -17,6 +17,7 @@
         "pawel-brzezinski/first-aid-component": "dev-main"
     },
     "require-dev": {
+        "keyvanakbary/mimic": "^1.0",
         "phpmetrics/phpmetrics": "^2.7",
         "phpspec/prophecy-phpunit": "^2.0",
         "phpstan/phpstan": "^0.12.98",
