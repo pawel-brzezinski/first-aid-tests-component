@@ -27,7 +27,7 @@ abstract class SimpleValueObjectMother
      */
     public static function random()
     {
-        return self::randomWith([]);
+        return static::randomWith([]);
     }
 
     /**
