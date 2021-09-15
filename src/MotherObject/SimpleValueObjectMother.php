@@ -23,6 +23,14 @@ abstract class SimpleValueObjectMother
     }
 
     /**
+     * @return mixed|object
+     */
+    public static function random()
+    {
+        return self::randomWith([]);
+    }
+
+    /**
      * @return string
      */
     abstract protected static function getClass(): string;

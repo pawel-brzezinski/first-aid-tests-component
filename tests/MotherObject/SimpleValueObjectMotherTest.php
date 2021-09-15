@@ -57,7 +57,7 @@ final class SimpleValueObjectMotherTest extends TestCase
      * @param int $expectedId
      * @param string $expectedText
      */
-    public function testShouldCallRandomWithStaticClassAndCheckIfObjectHasBeenCreatedCorrectly(
+    public function testShouldCallRandomWithStaticMethodAndCheckIfObjectHasBeenCreatedCorrectly(
         array $args,
         int $expectedId,
         string $expectedText
@@ -71,6 +71,25 @@ final class SimpleValueObjectMotherTest extends TestCase
         $this->assertInstanceOf(FakeValueObject::class, $actual);
         $this->assertSame($expectedId, $actual->id);
         $this->assertSame($expectedText, $actual->text);
+    }
+
+    #######
+    # End #
+    #######
+
+    #####################################
+    # SimpleValueObjectMother::random() #
+    #####################################
+
+    public function testShouldCallRandomStaticMethodAndCheckIfObjectHasBeenCreatedCorrectly(): void
+    {
+        // When
+        $actual = FakeValueObjectMother::random();
+
+        // Then
+        $this->assertInstanceOf(FakeValueObject::class, $actual);
+        $this->assertSame(1, $actual->id);
+        $this->assertSame('Lorem Ipsum Dolor', $actual->text);
     }
 
     #######
