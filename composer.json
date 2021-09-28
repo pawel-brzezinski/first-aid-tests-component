@@ -21,9 +21,16 @@
         "phpmetrics/phpmetrics": "^2.7",
         "phpspec/prophecy-phpunit": "^2.0",
         "phpstan/phpstan": "^0.12.98",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "symfony/framework-bundle": "^5.3",
+        "twig/twig": "^3.3"
     },
-    "suggest": {},
+    "suggest": {
+        "phpspec/prophecy-phpunit": "Needs to use component test cases",
+        "phpunit/phpunit": "Needs to use component test cases",
+        "symfony/framework-bundle": "Needs to use Symfony controller test case",
+        "twig/twig": "Needs to use Symfony controller test case"
+    },
     "autoload": {
         "psr-4": {
             "PB\\Component\\FirstAidTests\\": "src/"
