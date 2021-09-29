@@ -23,12 +23,14 @@
         "phpstan/phpstan": "^0.12.98",
         "phpunit/phpunit": "^9.5",
         "symfony/framework-bundle": "^5.3",
+        "symfony/security-core": "^5.3",
         "twig/twig": "^3.3"
     },
     "suggest": {
         "phpspec/prophecy-phpunit": "Needs to use component test cases",
         "phpunit/phpunit": "Needs to use component test cases",
         "symfony/framework-bundle": "Needs to use Symfony controller test case",
+        "symfony/security-core": "Needs to use Symfony controller test case",
         "twig/twig": "Needs to use Symfony controller test case"
     },
     "autoload": {

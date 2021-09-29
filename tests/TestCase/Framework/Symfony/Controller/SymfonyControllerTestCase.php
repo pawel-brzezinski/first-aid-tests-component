@@ -9,6 +9,10 @@ use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\{MethodProphecy, ObjectProphecy};
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Twig\Environment;
 use Twig\Error\{LoaderError, RuntimeError, SyntaxError};
 
@@ -22,6 +26,12 @@ abstract class SymfonyControllerTestCase extends TestCase
     /** @var ObjectProphecy|ContainerInterface|null */
     private $containerMock;
 
+    /** @var ObjectProphecy|RouterInterface|null */
+    private $routerMock;
+
+    /** @var ObjectProphecy|TokenStorageInterface|null */
+    private $tokenStorageMock;
+
     /** @var ObjectProphecy|Environment|null */
     private $twigMock;
 
@@ -31,6 +41,8 @@ abstract class SymfonyControllerTestCase extends TestCase
     protected function setUp(): void
     {
         $this->containerMock = $this->prophesize(ContainerInterface::class);
+        $this->routerMock = $this->prophesize(RouterInterface::class);
+        $this->tokenStorageMock = $this->prophesize(TokenStorageInterface::class);
         $this->twigMock = $this->prophesize(Environment::class);
     }
 
@@ -40,6 +52,8 @@ abstract class SymfonyControllerTestCase extends TestCase
     protected function tearDown(): void
     {
         $this->containerMock = null;
+        $this->routerMock = null;
+        $this->tokenStorageMock = null;
         $this->twigMock = null;
     }
 
@@ -96,7 +110,7 @@ abstract class SymfonyControllerTestCase extends TestCase
      */
     protected function mockRenderView(array $args, string $expectedContent, int $calls = 1): void
     {
-        list('view' => $view, 'parameters' => $parameters) = $args;
+        list($view, $parameters) = $args;
 
         /** @var MethodProphecy $methodProp */
         $methodProp = $this->twigMock->render($view, $parameters);
@@ -104,5 +118,48 @@ abstract class SymfonyControllerTestCase extends TestCase
 
         $this->mockHasService('twig', true, $calls);
         $this->mockGetService('twig', $this->twigMock->reveal(), $calls);
+    }
+
+    /**
+     * @param UserInterface|null $expectedUser
+     * @param int $calls
+     */
+    protected function mockGetUser(?UserInterface $expectedUser, int $calls = 1): void
+    {
+        /** @var MethodProphecy $methodProp */
+        $methodProp = $this->tokenStorageMock->getToken();
+        $methodProp->shouldBeCalledTimes($calls);
+
+        if (null === $expectedUser) {
+            $methodProp->willReturn(null);
+        } else {
+            /** @var ObjectProphecy|TokenInterface $tokenMock */
+            $tokenMock = $this->prophesize(TokenInterface::class);
+
+            /** @var MethodProphecy $getUserMethodProp */
+            $getUserMethodProp = $tokenMock->getUser();
+            $getUserMethodProp->shouldBeCalledTimes($calls)->willReturn($expectedUser);
+
+            $methodProp->willReturn($tokenMock->reveal());
+        }
+
+        $this->mockHasService('security.token_storage', true, $calls);
+        $this->mockGetService('security.token_storage', $this->tokenStorageMock->reveal(), $calls);
+    }
+
+    /**
+     * @param array{string, array, int} $args            AbstractController::generateUrl() arguments
+     * @param string $expectedUrl
+     * @param int $calls
+     */
+    protected function mockGenerateUrl(array $args, string $expectedUrl, int $calls = 1): void
+    {
+        list($route, $parameters, $referenceType) = $args;
+
+        /** @var MethodProphecy $methodProp */
+        $methodProp = $this->routerMock->generate($route, $parameters, $referenceType);
+        $methodProp->shouldBeCalledTimes($calls)->willReturn($expectedUrl);
+
+        $this->mockGetService('router', $this->routerMock->reveal(), $calls);
     }
 }
