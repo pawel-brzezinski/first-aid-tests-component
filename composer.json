@@ -23,6 +23,7 @@
         "phpstan/phpstan": "^0.12.98",
         "phpunit/phpunit": "^9.5",
         "symfony/framework-bundle": "^5.3",
+        "symfony/messenger": "^5.3",
         "symfony/security-core": "^5.3",
         "twig/twig": "^3.3"
     },
@@ -30,6 +31,7 @@
         "phpspec/prophecy-phpunit": "Needs to use component test cases",
         "phpunit/phpunit": "Needs to use component test cases",
         "symfony/framework-bundle": "Needs to use Symfony controller test case",
+        "symfony/messenger": "Needs to use Symfony Messenger testable components",
         "symfony/security-core": "Needs to use Symfony controller test case",
         "twig/twig": "Needs to use Symfony controller test case"
     },
